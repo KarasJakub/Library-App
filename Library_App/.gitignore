@@ -1,0 +1,45 @@
+# Rider projects
+*.sln.iml
+
+# Ignore build directories
+bin/
+obj/
+
+# User-specific files
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+
+# Rider & JetBrains specific files
+*.sln.ide
+.idea/
+.idea_modules/
+
+# NuGet Packages
+*.nupkg
+packages/
+
+# Environment-specific
+*.env
+
+# Logs and Debugging
+*.log
+.vs/
+
+# Coverage & Reports
+coverage/
+*.coverage
+TestResults/
+
+# Generated files
+Generated/
+
+# Temporary files
+*.tmp
+*.cache
+*.bak
+
+# OS-specific files
+.DS_Store
+Thumbs.db
