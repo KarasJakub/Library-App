@@ -11,9 +11,10 @@ namespace Library_App
     {
         static void Main()
         {
-            // Library library = new Library("library.json");
+            Library library = new Library("library.json");
             UserAuthManager userManager = new UserAuthManager("users.json");
             userManager.LoadUsers();
+            library.LoadBooks();
 
             Console.WriteLine("Witaj w systemie bibliotecznym!");
             Console.WriteLine("1. Logowanie");
@@ -63,6 +64,7 @@ namespace Library_App
                 Console.WriteLine("\n1. Wypożycz książkę");
                 Console.WriteLine("2. Zwrot książki");
                 Console.WriteLine("3. Sprawdź swoje wypożyczenia");
+                Console.WriteLine("4. Wyświetl dostępne książki");
                 Console.WriteLine("4. Wyjście");
                 Console.Write("Wybierz opcję: ");
                 string choice = Console.ReadLine();
@@ -72,18 +74,22 @@ namespace Library_App
                     case "1":
                         Console.Write("Podaj tytuł książki: ");
                         string title = Console.ReadLine();
-                        // library.BorrowBook(user, title);
+                        library.BorrowBook(user, title);
                         break;
                     case "2":
                         Console.Write("Podaj tytuł książki do zwrotu: ");
                         title = Console.ReadLine();
-                        // library.ReturnBook(user, title);
+                        library.ReturnBook(user, title);
                         break;
                     case "3":
                         user.ShowBorrowedBooks();
                         break;
                     case "4":
+                        library.ShowAvailableBooks();
+                        break;
+                    case "5":
                         userManager.SaveUsers();
+                        library.SaveBooks();
                         Console.WriteLine("Dziękujemy za korzystanie z systemu!");
                         return;
                     default:
@@ -114,5 +120,9 @@ namespace Library_App
             Console.WriteLine();
             return password;
         }
+        
+
+        
+
     }
 }
