@@ -6,6 +6,7 @@ namespace Library_App
     {
         private readonly string _filePath;
         private List<Book> books;
+        private const decimal PenaltyPerDay = 1.0m;
 
         public Library(string filePath)
         {
@@ -22,7 +23,7 @@ namespace Library_App
             }
             InitializeBooks();
         }
-        public void InitializeBooks()
+        private void InitializeBooks()
         {
             //TODO: it propably should be removed in future
             if (books.Count == 0)
@@ -87,6 +88,13 @@ namespace Library_App
             var book = books.FirstOrDefault(b => b.Title == title && !b.IsAvailable && b.BorrowedBy == user.Username);
             if (book != null)
             {
+                DateTime today = DateTime.Now;
+                if (book.DueDate.HasValue && today > book.DueDate.Value)
+                {
+                    int daysLate = (today - book.DueDate.Value).Days;
+                    decimal penalty = daysLate * PenaltyPerDay;
+                    Console.WriteLine($"Przekroczyłeś termin zwrotu o {daysLate} dni. Naliczona kara: {penalty} zł");
+                }
                 book.IsAvailable = true;
                 book.BorrowedBy = null;
                 book.BorrowedDate = null;
