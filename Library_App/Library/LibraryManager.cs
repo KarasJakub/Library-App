@@ -82,7 +82,20 @@ namespace Library_App
                 Console.WriteLine("Książka niedostępna.");
             }
         }
-
+        public void RemoveBook(string title)
+        {
+            var book = books.FirstOrDefault(b => b.Title == title);
+            if (book != null)
+            {
+                books.Remove(book);
+                SaveBooks();
+                Console.WriteLine("Książka została usunięta.");
+            }
+            else
+            {
+                Console.WriteLine("Nie znaleziono książki o podanym tytule.");
+            }
+        }
         public void ReturnBook(User user, string title)
         {
             var book = books.FirstOrDefault(b => b.Title == title && !b.IsAvailable && b.BorrowedBy == user.Username);

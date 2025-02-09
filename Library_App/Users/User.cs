@@ -4,8 +4,9 @@ namespace Library_App
      {
         public string Username { get; set; }
         public string PasswordHash { get; set; }
+        public bool IsAdmin { get; set; } = false;
         public List<string> BorrowedBooks { get; set; } = new List<string>();
-
+        
         public void ShowBorrowedBooks()
         {
             if (BorrowedBooks.Count == 0)

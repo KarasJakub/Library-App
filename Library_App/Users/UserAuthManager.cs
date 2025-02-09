@@ -67,5 +67,20 @@ namespace Library_App
                 return Convert.ToBase64String(bytes);
             }
         }
+        
+        public void RemoveUser(string username)
+        {
+            var user = users.FirstOrDefault(u => u.Username == username);
+            if (user != null && !user.IsAdmin)
+            {
+                users.Remove(user);
+                SaveUsers();
+                Console.WriteLine("Użytkownik został usunięty.");
+            }
+            else
+            {
+                Console.WriteLine("Nie znaleziono użytkownika lub nie można usunąć administratora.");
+            }
+        }
     }
 }

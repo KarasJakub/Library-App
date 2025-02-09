@@ -58,7 +58,14 @@
                 Console.WriteLine("2. Zwrot książki");
                 Console.WriteLine("3. Sprawdź swoje wypożyczenia");
                 Console.WriteLine("4. Wyświetl dostępne książki");
-                Console.WriteLine("4. Wyjście");
+                Console.WriteLine("5. Wyjście");
+                if (user.IsAdmin)
+                {
+                    Console.WriteLine("Opcje administracyjne:");
+                    Console.WriteLine("6. Dodaj książkę");
+                    Console.WriteLine("7. Usuń książkę");
+                    Console.WriteLine("8. Usuń użytkownika");
+                }
                 Console.Write("Wybierz opcję: ");
                 string choice = Console.ReadLine();
 
@@ -81,6 +88,28 @@
                         library.ShowAvailableBooks();
                         break;
                     case "5":
+                        userManager.SaveUsers();
+                        library.SaveBooks();
+                        Console.WriteLine("Dziękujemy za korzystanie z systemu!");
+                        break;
+                    case "6":
+                        if (!user.IsAdmin)
+                        {
+                            Console.Write("Podaj tytuł książki do usunięcia: ");
+                            title = Console.ReadLine();
+                            library.RemoveBook(title);
+                        }
+                        break;
+                    case "8":
+                        if (user.IsAdmin)
+                        {
+                            Console.Write("Podaj nazwę użytkownika do usunięcia: ");
+                            string usernameToRemove = Console.ReadLine();
+                            userManager.RemoveUser(usernameToRemove);
+                        }
+
+                        break;
+                    case "7":
                         userManager.SaveUsers();
                         library.SaveBooks();
                         Console.WriteLine("Dziękujemy za korzystanie z systemu!");
