@@ -2,34 +2,27 @@ using System.Text.Json;
 
 namespace Library_App
 {
-        class Library
-    {
+        class Library {
         private readonly string _filePath;
         private List<Book> books;
         private const decimal PenaltyPerDay = 1.0m;
 
-        public Library(string filePath)
-        {
+        public Library(string filePath) {
             this._filePath = filePath;
             books = new List<Book>();
         }
 
-        public void LoadBooks()
-        {
-            if (File.Exists(_filePath))
-            {
+        public void LoadBooks() {
+            if (File.Exists(_filePath)) {
                 string json = File.ReadAllText(_filePath);
                 books = JsonSerializer.Deserialize<List<Book>>(json) ?? new List<Book>();
             }
             InitializeBooks();
         }
-        private void InitializeBooks()
-        {
+        private void InitializeBooks() {
             //TODO: it propably should be removed in future
-            if (books.Count == 0)
-            {
-                books.AddRange(new List<Book>
-                {
+            if (books.Count == 0) {
+                books.AddRange(new List<Book> {
                     new Book { Title = "Władca Pierścieni", IsAvailable = true },
                     new Book { Title = "Hobbit", IsAvailable = true },
                     new Book { Title = "Duma i uprzedzenie", IsAvailable = true }
@@ -39,36 +32,30 @@ namespace Library_App
         }
         
         
-        public void ShowAvailableBooks()
-        {
+        public void ShowAvailableBooks() {
             var availableBooks = books.Where(b => b.IsAvailable).ToList();
 
-            if (availableBooks.Count == 0)
-            {
+            if (availableBooks.Count == 0) {
                 //TODO: Exception in future
                 Console.WriteLine("Brak dostępnych książek.");
             }
-            else
-            {
+            else {
                 Console.WriteLine("Dostępne książki:");
-                foreach (var book in availableBooks)
-                {
+                foreach (var book in availableBooks) {
                     Console.WriteLine($"- {book.Title}");
                 }
             }
         }
 
-        public void SaveBooks()
-        {
+        public void SaveBooks() {
             string json = JsonSerializer.Serialize(books, new JsonSerializerOptions { WriteIndented = true });
             File.WriteAllText(_filePath, json);
         }
 
-        public void BorrowBook(User user, string title)
-        {
+        public void BorrowBook(User user, string title) {
             var book = books.FirstOrDefault(b => b.Title == title && b.IsAvailable);
-            if (book != null)
-            {
+            
+            if (book != null) {
                 book.IsAvailable = false;
                 book.BorrowedBy = user.Username;
                 book.BorrowedDate = DateTime.Now;
@@ -77,33 +64,32 @@ namespace Library_App
                 SaveBooks();
                 Console.WriteLine($"Książka wypożyczona. Termin zwrotu: {book.DueDate.Value:dd-MM-yyyy}");
             }
-            else
-            {
-                Console.WriteLine("Książka niedostępna.");
-            }
+            
+            if (book == null)
+                throw new BookNotAvailableException("Podana książka nie istnieje w bibliotece.");
+            
+            if (!book.IsAvailable)
+                throw new BookNotAvailableException($"Książka \"{title}\" jest już wypożyczona.");
+            
+
+
         }
-        public void RemoveBook(string title)
-        {
+        public void RemoveBook(string title) {
             var book = books.FirstOrDefault(b => b.Title == title);
-            if (book != null)
-            {
+            if (book != null) {
                 books.Remove(book);
                 SaveBooks();
                 Console.WriteLine("Książka została usunięta.");
             }
-            else
-            {
+            else {
                 Console.WriteLine("Nie znaleziono książki o podanym tytule.");
             }
         }
-        public void ReturnBook(User user, string title)
-        {
+        public void ReturnBook(User user, string title) {
             var book = books.FirstOrDefault(b => b.Title == title && !b.IsAvailable && b.BorrowedBy == user.Username);
-            if (book != null)
-            {
+            if (book != null) {
                 DateTime today = DateTime.Now;
-                if (book.DueDate.HasValue && today > book.DueDate.Value)
-                {
+                if (book.DueDate.HasValue && today > book.DueDate.Value) {
                     int daysLate = (today - book.DueDate.Value).Days;
                     decimal penalty = daysLate * PenaltyPerDay;
                     Console.WriteLine($"Przekroczyłeś termin zwrotu o {daysLate} dni. Naliczona kara: {penalty} zł");
@@ -116,8 +102,7 @@ namespace Library_App
                 SaveBooks();
                 Console.WriteLine("Książka zwrócona.");
             }
-            else
-            {
+            else {
                 Console.WriteLine("Nie posiadasz tej książki.");
             }
         }

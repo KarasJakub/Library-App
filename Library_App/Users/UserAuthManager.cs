@@ -1,28 +1,22 @@
 using System.Text.Json;
 using System.Security.Cryptography;
 
-namespace Library_App
-{
-    class UserAuthManager
-    {
+namespace Library_App {
+    class UserAuthManager {
         private string filePath;
         private List<User> users;
 
-        public UserAuthManager(string filePath)
-        {
+        public UserAuthManager(string filePath) {
             this.filePath = filePath;
             users = new List<User>();
         }
 
-        public void LoadUsers()
-        {
-            if (File.Exists(filePath))
-            {
+        public void LoadUsers() {
+            if (File.Exists(filePath)) {
                 string json = File.ReadAllText(filePath);
                 users = JsonSerializer.Deserialize<List<User>>(json) ?? new List<User>();
             }
-            else
-            {
+            else {
                 //generating dummy data
                 users = new List<User>
                 {
@@ -33,23 +27,19 @@ namespace Library_App
             }
         }
 
-        public void SaveUsers()
-        {
+        public void SaveUsers() {
             string json = JsonSerializer.Serialize(users, new JsonSerializerOptions { WriteIndented = true });
             File.WriteAllText(filePath, json);
         }
 
-        public User AuthenticateUser(string username, string password)
-        {
+        public User AuthenticateUser(string username, string password) {
             string hash = ComputeHash(password);
             return users.FirstOrDefault(u => u.Username == username && u.PasswordHash == hash);
         }
 
-        public User RegisterUser(string username, string password)
-        {
+        public User RegisterUser(string username, string password) {
             //Checks if users contain given user
-            if (users.Any(u => u.Username == username))
-            {
+            if (users.Any(u => u.Username == username)) {
                 Console.WriteLine("Użytkownik o takiej nazwie już istnieje.");
                 return null;
             }
@@ -59,26 +49,21 @@ namespace Library_App
             return newUser;
         }
 
-        public static string ComputeHash(string input)
-        {
-            using (SHA256 sha256 = SHA256.Create())
-            {
+        private static string ComputeHash(string input) {
+            using (SHA256 sha256 = SHA256.Create()) {
                 byte[] bytes = sha256.ComputeHash(System.Text.Encoding.UTF8.GetBytes(input));
                 return Convert.ToBase64String(bytes);
             }
         }
         
-        public void RemoveUser(string username)
-        {
+        public void RemoveUser(string username) {
             var user = users.FirstOrDefault(u => u.Username == username);
-            if (user != null && !user.IsAdmin)
-            {
+            if (user != null && !user.IsAdmin) {
                 users.Remove(user);
                 SaveUsers();
                 Console.WriteLine("Użytkownik został usunięty.");
             }
-            else
-            {
+            else {
                 Console.WriteLine("Nie znaleziono użytkownika lub nie można usunąć administratora.");
             }
         }
