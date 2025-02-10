@@ -12,7 +12,6 @@ namespace Library_App
             }
             else {
                 Console.WriteLine("Twoje wypożyczone książki:");
-                //call to file handler to check all books for username = givenUsername
                 foreach (var book in BorrowedBooks) {
                     Console.WriteLine("- " + book);
                 }

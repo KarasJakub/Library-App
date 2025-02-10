@@ -32,16 +32,23 @@ namespace Library_App {
             File.WriteAllText(filePath, json);
         }
 
-        public User AuthenticateUser(string username, string password) {
+        public User AuthenticateUser(string username, string password)
+        {
             string hash = ComputeHash(password);
-            return users.FirstOrDefault(u => u.Username == username && u.PasswordHash == hash);
+            var user = users.FirstOrDefault(u => u.Username == username && u.PasswordHash == hash);
+
+            if (user == null)
+            {
+                throw new UserNotFoundException("Nie znaleziono użytkownika, lub podango błędne haslo");
+            }
+
+            return user;
         }
 
         public User RegisterUser(string username, string password) {
-            //Checks if users contain given user
-            if (users.Any(u => u.Username == username)) {
-                Console.WriteLine("Użytkownik o takiej nazwie już istnieje.");
-                return null;
+            if (users.Any(u => u.Username == username))
+            {
+                throw new UserAlreadyExistsException("Użytkownik o takiej nazwie już istnieje.");
             }
             var newUser = new User { Username = username, PasswordHash = ComputeHash(password) };
             users.Add(newUser);
@@ -58,14 +65,18 @@ namespace Library_App {
         
         public void RemoveUser(string username) {
             var user = users.FirstOrDefault(u => u.Username == username);
-            if (user != null && !user.IsAdmin) {
-                users.Remove(user);
-                SaveUsers();
-                Console.WriteLine("Użytkownik został usunięty.");
+            if (user == null)
+            {
+                throw new UserNotFoundException("Nie znaleziono użytkownika");
             }
-            else {
-                Console.WriteLine("Nie znaleziono użytkownika lub nie można usunąć administratora.");
+
+            if (user.IsAdmin)
+            {
+                throw new InvalidOperationException("Nie można usunąć administratora!");
             }
+            users.Remove(user);
+            SaveUsers();
+            Console.WriteLine("Użytkownik został usunięty.");
         }
     }
 }

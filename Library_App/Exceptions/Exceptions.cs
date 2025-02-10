@@ -11,4 +11,10 @@ namespace Library_App
     public class OverdueBookException : Exception {
         public OverdueBookException(string message) : base(message) { }
     }
+    
+    class UserAlreadyExistsException : Exception
+    {
+        public UserAlreadyExistsException(string message) : base(message) { }
+    }
+
 }

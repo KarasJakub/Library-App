@@ -21,29 +21,28 @@ namespace Library_App
         }
         private void InitializeBooks() {
             //TODO: it propably should be removed in future
-            if (books.Count == 0) {
-                books.AddRange(new List<Book> {
-                    new Book { Title = "Władca Pierścieni", IsAvailable = true },
-                    new Book { Title = "Hobbit", IsAvailable = true },
-                    new Book { Title = "Duma i uprzedzenie", IsAvailable = true }
-                });
+            // if (books.Count == 0) {
+            //     books.AddRange(new List<Book> {
+            //         new Book { Title = "Władca Pierścieni", IsAvailable = true },
+            //         new Book { Title = "Hobbit", IsAvailable = true },
+            //         new Book { Title = "Duma i uprzedzenie", IsAvailable = true }
+            //     });
                 SaveBooks();
-            }
+            // }
         }
         
         
         public void ShowAvailableBooks() {
             var availableBooks = books.Where(b => b.IsAvailable).ToList();
 
-            if (availableBooks.Count == 0) {
-                //TODO: Exception in future
-                Console.WriteLine("Brak dostępnych książek.");
-            }
-            else {
+            if (availableBooks.Count != 0) {
                 Console.WriteLine("Dostępne książki:");
                 foreach (var book in availableBooks) {
                     Console.WriteLine($"- {book.Title}");
                 }
+            }
+            if (availableBooks.Count == 0) {
+                throw new BookNotAvailableException("Brak dostępnych książek");
             }
         }
 
@@ -71,14 +70,13 @@ namespace Library_App
             if (!book.IsAvailable)
                 throw new BookNotAvailableException($"Książka \"{title}\" jest już wypożyczona.");
             
-
-
         }
         public void RemoveBook(string title) {
             var book = books.FirstOrDefault(b => b.Title == title);
             if (book != null) {
                 books.Remove(book);
                 SaveBooks();
+                //TODO: Exceptions
                 Console.WriteLine("Książka została usunięta.");
             }
             else {
@@ -92,7 +90,7 @@ namespace Library_App
                 if (book.DueDate.HasValue && today > book.DueDate.Value) {
                     int daysLate = (today - book.DueDate.Value).Days;
                     decimal penalty = daysLate * PenaltyPerDay;
-                    Console.WriteLine($"Przekroczyłeś termin zwrotu o {daysLate} dni. Naliczona kara: {penalty} zł");
+                    throw new OverdueBookException($"Przekroczyłeś termin zwrotu o {daysLate} dni. Naliczona kara: {penalty} zł");
                 }
                 book.IsAvailable = true;
                 book.BorrowedBy = null;
@@ -102,8 +100,9 @@ namespace Library_App
                 SaveBooks();
                 Console.WriteLine("Książka zwrócona.");
             }
-            else {
-                Console.WriteLine("Nie posiadasz tej książki.");
+            if (book == null)
+            {
+                throw new BookNotAvailableException("Nie posiadasz tej książki, lub książka nie istnieje");
             }
         }
     }

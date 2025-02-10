@@ -8,10 +8,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="13e57c3e-51d5-4b67-ac0d-058e4f600201" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/Library_App/Exceptions/Exceptions.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Library_App/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Library_App/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Library_App/Exceptions/Exceptions.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Library_App/Exceptions/Exceptions.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Library_App/Library/LibraryManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Library_App/Library/LibraryManager.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Library_App/Program.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Library_App/Program.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Library_App/Users/User.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Library_App/Users/User.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Library_App/Users/UserAuthManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Library_App/Users/UserAuthManager.cs" afterDir="false" />
     </list>
@@ -84,7 +83,7 @@
       <workItem from="1738605785539" duration="7824000" />
       <workItem from="1738695317787" duration="8711000" />
       <workItem from="1739102414861" duration="7408000" />
-      <workItem from="1739211546830" duration="4989000" />
+      <workItem from="1739211546830" duration="7940000" />
     </task>
     <servers />
   </component>
