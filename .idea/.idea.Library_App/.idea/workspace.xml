@@ -8,10 +8,25 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="13e57c3e-51d5-4b67-ac0d-058e4f600201" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/.vs/Library_App/CopilotIndices/0.2.1657.32929/CodeChunks.db" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.vs/Library_App/CopilotIndices/0.2.1657.32929/SemanticSymbols.db" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.vs/Library_App/CopilotIndices/0.2.1657.32929/SemanticSymbols.db-shm" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.vs/Library_App/CopilotIndices/0.2.1657.32929/SemanticSymbols.db-wal" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.vs/Library_App/DesignTimeBuild/.dtbcache.v2" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.vs/Library_App/FileContentIndex/4f54e53b-53ed-43d5-a94d-f077cb0d7ead.vsidx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.vs/Library_App/FileContentIndex/bd00668f-63ba-4ad5-8198-6903bcde7a5b.vsidx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.vs/Library_App/v17/.futdcache.v2" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.vs/Library_App/v17/.suo" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.vs/Library_App/v17/DocumentLayout.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.vs/ProjectEvaluation/library_app.metadata.v9.bin" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.vs/ProjectEvaluation/library_app.projects.v9.bin" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.vs/ProjectEvaluation/library_app.strings.v9.bin" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Library_App/Data/library.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Library_App/Data/users.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Library_App/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Library_App/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Library_App/Exceptions/Exceptions.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Library_App/Exceptions/Exceptions.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Library_App/Library/LibraryManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Library_App/Library/LibraryManager.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Library_App/Users/User.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Library_App/Users/User.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Library_App/Library_App.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/Library_App/Library_App.csproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Library_App/Program.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Library_App/Program.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Library_App/Users/UserAuthManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Library_App/Users/UserAuthManager.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -25,6 +40,7 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
+  <component name="MetaFilesCheckinStateConfiguration" checkMetaFiles="true" />
   <component name="ProblemsViewState">
     <option name="selectedTabId" value="CurrentFile" />
   </component>
@@ -37,21 +53,21 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;.NET Project.Library_App.executor&quot;: &quot;Run&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;Exceptions-handling&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;settings.qodana&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    ".NET Project.Library_App.executor": "Run",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "git-widget-placeholder": "Exceptions-handling",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "settings.editor.selected.configurable": "preferences.pluginManager",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RunManager">
     <configuration name="Library_App" type="DotNetProject" factoryName=".NET Project">
       <option name="EXE_PATH" value="" />
@@ -83,13 +99,21 @@
       <workItem from="1738605785539" duration="7824000" />
       <workItem from="1738695317787" duration="8711000" />
       <workItem from="1739102414861" duration="7408000" />
-      <workItem from="1739211546830" duration="7940000" />
+      <workItem from="1739211546830" duration="9071000" />
+      <workItem from="1739308903884" duration="233000" />
+      <workItem from="1739382940823" duration="203000" />
+      <workItem from="1739815957243" duration="283000" />
+      <workItem from="1739818682169" duration="1537000" />
+      <workItem from="1739820881521" duration="5098000" />
+      <workItem from="1739902823492" duration="9022000" />
+      <workItem from="1739990202329" duration="1598000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
   </component>
+  <component name="UnityCheckinConfiguration" checkUnsavedScenes="true" />
   <component name="UnityProjectConfiguration" hasMinimizedUI="false" />
   <component name="VcsManagerConfiguration">
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />

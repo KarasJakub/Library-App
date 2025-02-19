@@ -17,11 +17,11 @@ namespace Library_App {
                 users = JsonSerializer.Deserialize<List<User>>(json) ?? new List<User>();
             }
             else {
-                //generating dummy data
+                //Seeding databse if empty
                 users = new List<User>
                 {
-                    new User { Username = "admin", PasswordHash = ComputeHash("admin123") },
-                    new User { Username = "user", PasswordHash = ComputeHash("user123") }
+                    new User { Username = "admin", PasswordHash = ComputeHash("admin") },
+                    new User { Username = "user", PasswordHash = ComputeHash("user") }
                 };
                 SaveUsers();
             }

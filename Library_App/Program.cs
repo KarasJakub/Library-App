@@ -5,8 +5,14 @@
         static void Main()
         {
             try {
-            Library library = new Library("library.json");
-            UserAuthManager userManager = new UserAuthManager("users.json");
+            LibraryManager library = new LibraryManager(Path.Combine(
+                Path.GetFullPath(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, @"..\..\..\Data")),
+                "library.json"
+            ));
+            UserAuthManager userManager = new UserAuthManager(Path.Combine(
+                Path.GetFullPath(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, @"..\..\..\Data")),
+                "users.json"
+            ));
             userManager.LoadUsers();
             library.LoadBooks();
 
@@ -39,7 +45,6 @@
                 }
                 
             }
-
             if (user == null) {
                 Console.WriteLine("Nie udało się zalogować/zarejestrować.");
                 return;
@@ -86,7 +91,14 @@
                         Console.WriteLine("Dziękujemy za korzystanie z systemu!");
                         break;
                     case "6":
-                        if (!user.IsAdmin) {
+                        if (user.IsAdmin) {
+                            Console.Write("Podaj tytuł książki do dodania: ");
+                            title = Console.ReadLine();
+                            library.AddBook(title);
+                        }
+                        break;
+                    case "7":
+                        if (user.IsAdmin) {
                             Console.Write("Podaj tytuł książki do usunięcia: ");
                             title = Console.ReadLine();
                             library.RemoveBook(title);
@@ -98,13 +110,7 @@
                             string usernameToRemove = Console.ReadLine();
                             userManager.RemoveUser(usernameToRemove);
                         }
-
                         break;
-                    case "7":
-                        userManager.SaveUsers();
-                        library.SaveBooks();
-                        Console.WriteLine("Dziękujemy za korzystanie z systemu!");
-                        return;
                     default:
                         Console.WriteLine("Nieprawidłowa opcja!");
                         break;
@@ -127,7 +133,6 @@
         catch (Exception ex) {
             Console.WriteLine($"Błąd krytyczny: {ex.Message}");
         }
-
             static string ReadPassword() {
                 string password = "";
                 ConsoleKeyInfo key;

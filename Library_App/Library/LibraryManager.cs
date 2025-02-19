@@ -2,12 +2,12 @@ using System.Text.Json;
 
 namespace Library_App
 {
-        class Library {
+        class LibraryManager {
         private readonly string _filePath;
         private List<Book> books;
         private const decimal PenaltyPerDay = 1.0m;
 
-        public Library(string filePath) {
+        public LibraryManager(string filePath) {
             this._filePath = filePath;
             books = new List<Book>();
         }
@@ -20,15 +20,15 @@ namespace Library_App
             InitializeBooks();
         }
         private void InitializeBooks() {
-            //TODO: it propably should be removed in future
-            // if (books.Count == 0) {
-            //     books.AddRange(new List<Book> {
-            //         new Book { Title = "Władca Pierścieni", IsAvailable = true },
-            //         new Book { Title = "Hobbit", IsAvailable = true },
-            //         new Book { Title = "Duma i uprzedzenie", IsAvailable = true }
-            //     });
+            //Seeding databse if empty
+             if (books.Count == 0) {
+                 books.AddRange(new List<Book> {
+                     new Book { Title = "Władca Pierścieni", IsAvailable = true },
+                     new Book { Title = "Hobbit", IsAvailable = true },
+                     new Book { Title = "Duma i uprzedzenie", IsAvailable = true }
+                 });
                 SaveBooks();
-            // }
+            }
         }
         
         
@@ -67,20 +67,26 @@ namespace Library_App
             if (book == null)
                 throw new BookNotAvailableException("Podana książka nie istnieje w bibliotece.");
             
-            if (!book.IsAvailable)
-                throw new BookNotAvailableException($"Książka \"{title}\" jest już wypożyczona.");
-            
+        }
+        public void AddBook(string title) {
+            if (books.Any(b => b.Title == title)) {
+                Console.WriteLine("Książka o takim tytule już istnieje.");
+                return;
+            }
+            var newBook = new Book { Title = title, IsAvailable = true };
+            books.Add(newBook);
+            SaveBooks();
+            Console.WriteLine("Książka została dodana.");
         }
         public void RemoveBook(string title) {
             var book = books.FirstOrDefault(b => b.Title == title);
             if (book != null) {
                 books.Remove(book);
                 SaveBooks();
-                //TODO: Exceptions
-                Console.WriteLine("Książka została usunięta.");
+                throw new BookNotAvailableException("Książka została usunięta.");
             }
             else {
-                Console.WriteLine("Nie znaleziono książki o podanym tytule.");
+                throw new BookNotAvailableException("Nie znaleziono książki o podanym tytule.");
             }
         }
         public void ReturnBook(User user, string title) {
