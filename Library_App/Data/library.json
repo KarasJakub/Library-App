@@ -1,0 +1,23 @@
+[
+  {
+    "Title": "W\u0142adca Pier\u015Bcieni",
+    "IsAvailable": true,
+    "BorrowedBy": null,
+    "BorrowedDate": null,
+    "DueDate": null
+  },
+  {
+    "Title": "Hobbit",
+    "IsAvailable": true,
+    "BorrowedBy": null,
+    "BorrowedDate": null,
+    "DueDate": null
+  },
+  {
+    "Title": "Duma i uprzedzenie",
+    "IsAvailable": true,
+    "BorrowedBy": null,
+    "BorrowedDate": null,
+    "DueDate": null
+  }
+]

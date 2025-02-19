@@ -1,0 +1,20 @@
+[
+  {
+    "Username": "admin",
+    "PasswordHash": "jGl25bVBBBW96Qi9Te4V37Fnqchz/Eu4qB9vKrRIqRg=",
+    "IsAdmin": false,
+    "BorrowedBooks": []
+  },
+  {
+    "Username": "user",
+    "PasswordHash": "BPiZbadjt6lpsQKO4wB1aerzpjVIbdqyEdUSyFud\u002BPs=",
+    "IsAdmin": false,
+    "BorrowedBooks": []
+  },
+  {
+    "Username": "Jakub",
+    "PasswordHash": "A6xnQhbz4Vx2HuGl4lXwZ5U2I8iziLRFnhP5eNfIRvQ=",
+    "IsAdmin": false,
+    "BorrowedBooks": []
+  }
+]
